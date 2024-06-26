@@ -173,7 +173,7 @@ In this task,  I will utilise GitHub environments to ask for manual approval bef
 ![env-protection](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/96eed7d7-2104-4dd2-b831-99479030bf05)
 
 5. In the "Configure Development" tab, check the option "Required Reviewers" and your GitHub account as a reviewer. Click on "Save protection rules".<p>
-![env-protection](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/5909eed3-6d2a-4883-bd69-22c1fcb13465)<p>
+![env-protection](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/2e0a4d6b-7d8a-440c-a677-57fc779b4ead)<p>
 ![env-protection-on](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/ee74af68-5f08-4057-8829-52a77e383f96)<p>
 
 6. Now let's test the protection rule. On the repository page, go to "Actions", click on "eShopOnWeb Build and Test" workflow and click on "Run workflow > Run workflow" to execute manually.<p>
