@@ -2,6 +2,7 @@
 ## Implementing GitHub Actions for CI/CD to deploys an Azure web app.
 ## Overview
 In this project, we will be creating a GitHub Action workflow to deploy an Azure web app.
+The project files can be found [here](https://github.com/JonesKwameOsei/eShopOnWeb)
 
 ### Importing eShopOnWeb to My GitHub Repository
 
