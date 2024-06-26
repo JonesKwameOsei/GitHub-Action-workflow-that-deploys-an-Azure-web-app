@@ -61,16 +61,18 @@ In this task, I will create the Azure Service Principal used by GitHub to deploy
 ![rsg](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/234ed316-e0d9-477f-af60-33ffe13ce24e)<p>
 
 5. In the Azure Portal, open the Cloud Shell (next to the search bar).<p>
+![cloudshell](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/a0d290fb-0e08-474c-a319-82a6a7d9d27f)<p>
 
-   **Note:** if this is the first time you open the Cloud Shell, you need to configure the persistent storage
+   >**Note:** if this is the first time you open the Cloud Shell, you need to configure the persistent storage
 
-6. Make sure the terminal is running in Bash mode and execute the following command, replacing `SUBSCRIPTION-ID` and `RESOURCE-GROUP` with your own identifiers (both can be found on the Overview page of the Resource Group):
+6. Make sure the terminal is running in Bash mode and execute the following command, replacing `SUBSCRIPTION-ID` and `RESOURCE-GROUP` with your own identifiers (both can be found on the Overview page of the Resource Group):<p>
+![cloudshell2](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/865259c8-4bde-4d5b-93e5-f986425cdfac)<p>
 
    ```
    az ad sp create-for-rbac --name GH-Action-eshoponweb --role contributor --scopes /subscriptions/SUBSCRIPTION-ID/resourceGroups/RESOURCE-GROUP --sdk-auth
    ```
 
-   **Note:** Make sure this is typed or pasted as a single line! **Note:** this command will create a Service Principal with Contributor access to the Resource Group created before. This way we make sure GitHub Actions will only have the permissions needed to interact only with this Resource Group (not the rest of the subscription)
+   >**Note:** Make sure this is typed or pasted as a single line! **Note:** this command will create a Service Principal with Contributor access to the Resource Group created before. This way we make sure GitHub Actions will only have the permissions needed to interact only with this Resource Group (not the rest of the subscription)
 
 7. The command will output a JSON object, you will later use it as a GitHub secret for the workflow. Copy the JSON. The JSON contains the identifiers used to authenticate against Azure in the name of a Microsoft Entra identity (service principal).
 
@@ -91,16 +93,22 @@ In this task, I will create the Azure Service Principal used by GitHub to deploy
    ```
 
 9. In a browser window, go back to your eShopOnWeb GitHub repository.
-10. On the repository page, go to "Settings", click on "Secrets and variables > Actions". Click on "New repository secret"
+10. On the repository page, go to "Settings", click on "Secrets and variables > Actions". Click on "New repository secret"<p>
+![actions](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/87f5e9fc-9966-4ebc-bb4b-484c907fb54d)<p>
+![actions2](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/bf418d62-57e5-4be5-82bf-5a3346b1a2d7)
+
     - Name: `AZURE_CREDENTIALS`
-    - Secret: paste the previously copied JSON object (GitHub is able to keep multiple secrets under same name, used by `azure/login` action)
-11. Click on "Add secret". Now GitHub Actions will be able to reference the service principal, using the repository secret.
+    - Secret: paste the previously copied JSON object (GitHub is able to keep multiple secrets under same name, used by `azure/login` action)<p>
+![actions3](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/5f581e16-bf61-4b10-9bc5-218e1fcf9c37)<p>
 
-## Task 2: Modify and execute the GitHub workflow
+11. Click on "Add secret". Now GitHub Actions will be able to reference the service principal, using the repository secret.<p>
+![actions-secrets](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/a9e96ba5-72e9-4828-aeca-57b1068c2106)<p>
 
-In this task, you will modify the given GitHub workflow and execute it to deploy the solution in your own subscription.
+##### Task 2: Modify and execute the GitHub workflow
 
-1. In a browser window, go back to your eShopOnWeb GitHub repository.
+I will modify the given GitHub workflow and execute it to deploy the solution in my own subscription.
+
+1. In a browser window, return to the eShopOnWeb GitHub repository.
 2. On the repository page, go to "Code" and open the following file: `eShopOnWeb/.github/workflows/eshoponweb-cicd.yml`. This workflow defines the CI/CD process for the given .NET 8 website code.
 3. Uncomment the `on` section (delete `#`). The workflow triggers with every push to the main branch and also offers manual triggering (`workflow_dispatch`).
 4. In the `env` section, make the following changes:
@@ -117,6 +125,28 @@ In this task, you will review the GitHub workflow execution:
 
 1. In a browser window, go back to your eShopOnWeb GitHub repository.
 2. On the repository page, go to "Actions", you will see the workflow setup before executing. Click on it.
+
+# Task 3: Review GitHub Workflow Execution
+
+In this task, our aim is to review the GitHub workflow execution:
+
+1. In a browser window, go back to the eShopOnWeb GitHub repository.
+2. On the repository page, go to "Actions", you will see the workflow setup before executing. Click on it.<p>
+![workflows](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/8b479ce3-0c4d-462f-8788-30ec026d7d0b)<p>
+This will take us to the Actions tab of your GitHub repository, where we can view the status and details of the workflow run that was triggered when I committed the changes in the previous task.
+
+Here,  we can see the individual jobs and steps that were executed as part of the workflow, as well as the overall status of the run (whether it was successful, failed, or is still in progress).<p>
+![workflows2](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/c76d02b2-8a5e-4430-ba87-47d7f752071c)<p>
+
+You can click on the specific workflow run to view more details, such as the logs for each step, any artifacts that were generated, and information about the environment in which the workflow was executed.
+![workflows3](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/58bce5e1-a025-4ae8-b5f7-051c5504a3ee)<p>
+![workflows4](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/e6b60a8b-0825-4cb0-ac16-d394c62bc3fd)<p>
+3. Let's wait for the workflow to complete. In the Summary, we can view the two workflow jobs, their status, and the artifacts saved from the execution.  Each job can be examined through the logs.<p>
+![workflows-done](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/8c227498-f9ba-4f8e-8579-64396cf456e2)<p>
+![workflows-done2](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/3e29ee1d-94eb-4e32-b175-2c22b99c2fba)<p>
+![image](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/69660402-12aa-4a05-8c1e-b1bccc1d6a62)<p>
+
+Reviewing the workflow execution is an important step to ensure that the deployment to Azure was successful and to troubleshoot any issues that may have occurred during the process.
 
 
 
