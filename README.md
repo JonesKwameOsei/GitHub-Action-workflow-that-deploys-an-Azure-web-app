@@ -1,4 +1,4 @@
-# GitHub-Action-workflow-that-deploys-an-Azure-web-app
+![webapp-browse-checkout](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/e2b2f7e4-fe8d-4d4c-aa9c-acbf8c3f2ce7)# GitHub-Action-workflow-that-deploys-an-Azure-web-app
 ## Implementing GitHub Actions for CI/CD to deploys an Azure web app.
 ## Overview
 In this project, we will be creating a GitHub Action workflow to deploy an Azure web app.
@@ -144,9 +144,21 @@ You can click on the specific workflow run to view more details, such as the log
 3. Let's wait for the workflow to complete. In the Summary, we can view the two workflow jobs, their status, and the artifacts saved from the execution.  Each job can be examined through the logs.<p>
 ![workflows-done](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/8c227498-f9ba-4f8e-8579-64396cf456e2)<p>
 ![workflows-done2](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/3e29ee1d-94eb-4e32-b175-2c22b99c2fba)<p>
-![image](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/69660402-12aa-4a05-8c1e-b1bccc1d6a62)<p>
+![workflows-copied](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/f2542b15-a5e3-485f-a77c-1b62f7f03efa)<p>
 
 Reviewing the workflow execution is an important step to ensure that the deployment to Azure was successful and to troubleshoot any issues that may have occurred during the process.
+
+4. Return to the [Azure Portal](https://portal.azure.com/). Open the resource group created before. Now we will see that the GitHub Action, using a bicep template, has created an Azure App Service Plan + App Service.<p> 
+![webapp](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/c42e4dce-0db1-4f1a-b5c4-e6cdd8e0c9b5)<p>
+![appservice](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/6c4b529d-79d2-4a92-bff9-01105c31228c)<p>
+
+We can see the `published website` opening the `App Service` and clicking Browse.<p>
+![webapp-browse](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/fe28f86c-6205-4575-b3ce-ef994d1fc242)
+![webapp-browse2](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/57a70a9d-05a1-429b-88f5-99b365dd0086)
+![webapp-browse3](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/9936345c-8b7c-4dbb-89e1-071940c9b930)
+![webapp-browse4](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/b5ceb832-1a02-4810-9f09-b776d8676f25)
+![webapp-browse-checkout](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/e7e53a42-783e-40c1-ae64-cdfc09a7bb09)
+
 
 
 
