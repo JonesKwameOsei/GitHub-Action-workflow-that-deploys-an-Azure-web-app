@@ -1,4 +1,4 @@
-![webapp-browse-checkout](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/e2b2f7e4-fe8d-4d4c-aa9c-acbf8c3f2ce7)# GitHub-Action-workflow-that-deploys-an-Azure-web-app
+# GitHub-Action-workflow-that-deploys-an-Azure-web-app
 ## Implementing GitHub Actions for CI/CD to deploys an Azure web app.
 ## Overview
 In this project, we will be creating a GitHub Action workflow to deploy an Azure web app.
@@ -150,20 +150,87 @@ Reviewing the workflow execution is an important step to ensure that the deploym
 
 4. Return to the [Azure Portal](https://portal.azure.com/). Open the resource group created before. Now we will see that the GitHub Action, using a bicep template, has created an Azure App Service Plan + App Service.<p> 
 ![webapp](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/c42e4dce-0db1-4f1a-b5c4-e6cdd8e0c9b5)<p>
-![appservice](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/6c4b529d-79d2-4a92-bff9-01105c31228c)<p>
+![appservice](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/4371e41c-0e90-47c7-9e3b-ecc80c7ea119)<p>
 
 We can see the `published website` opening the `App Service` and clicking Browse.<p>
-![webapp-browse](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/fe28f86c-6205-4575-b3ce-ef994d1fc242)
-![webapp-browse2](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/57a70a9d-05a1-429b-88f5-99b365dd0086)
-![webapp-browse3](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/9936345c-8b7c-4dbb-89e1-071940c9b930)
-![webapp-browse4](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/b5ceb832-1a02-4810-9f09-b776d8676f25)
-![webapp-browse-checkout](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/e7e53a42-783e-40c1-ae64-cdfc09a7bb09)
+![webapp-browse](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/fe28f86c-6205-4575-b3ce-ef994d1fc242)<p>
+![webapp-browse2](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/57a70a9d-05a1-429b-88f5-99b365dd0086)<p>
+![webapp-browse3](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/9936345c-8b7c-4dbb-89e1-071940c9b930)<p>
+![webapp-browse4](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/b5ceb832-1a02-4810-9f09-b776d8676f25)<p>
+![webapp-browse-checkout](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/e7e53a42-783e-40c1-ae64-cdfc09a7bb09)<p>
 
+#### Task 4: Add Manual Approval for Pre-Deploy using GitHub Environments
 
+In this task,  I will utilise GitHub environments to ask for manual approval before executing the actions defined on the deploy job of my workflow.
 
+1. On the repository page, locate and click `Code` and open the following file: `eShopOnWeb/.github/workflows/eshoponweb-cicd.yml`.
+2. In the `deploy` job section, you can find a reference to an environment called `Development`. GitHub used environments add protection rules (and secrets) for your targets.
 
+3. On the repository page, go to "Settings", open "Environments" and click "New environment".
+4. Give it the name "Development" and click on "Configure Environment".
 
+   >**Note:** If an environment called "Development" already exists in the Environments list, open its configuration by clicking on the environment name.<p>
+![env-protection](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/96eed7d7-2104-4dd2-b831-99479030bf05)
 
+5. In the "Configure Development" tab, check the option "Required Reviewers" and your GitHub account as a reviewer. Click on "Save protection rules".<p>
+![env-protection](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/5909eed3-6d2a-4883-bd69-22c1fcb13465)<p>
+![env-protection-on](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/ee74af68-5f08-4057-8829-52a77e383f96)<p>
+
+6. Now let's test the protection rule. On the repository page, go to "Actions", click on "eShopOnWeb Build and Test" workflow and click on "Run workflow > Run workflow" to execute manually.<p>
+![env-protection-approve](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/e9d09635-0470-413b-81d2-8dce9968c892)<p>
+
+7. Click on the started execution of the workflow and wait for `buildandtest` job to finish. You will see a review request when `deploy` job is reached.<p>
+
+8. Click on "Review deployments", check "Development" and click on "Approve and deploy".<p>
+![env-protection-approved](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/a6c389c3-30dd-4ee4-b406-9463909ca1bd)<p>
+
+9. The workflow will follow the `deploy` job execution and finish.<p>
+![env-protection-approved-done](https://github.com/JonesKwameOsei/GitHub-Action-workflow-that-deploys-an-Azure-web-app/assets/81886509/e49a9b65-d40d-4625-93a0-bb37251f734b)<p>
+
+### Removing the Azure Lab Resources
+
+In this final section, I will use Azure Cloud Shell to delete the Azure resources provisioned in this lab to eliminate unnecessary charges.
+
+1. In the Azure portal, open the Bash shell session within the Cloud Shell pane.
+2. List all resource groups created throughout the labs of this module by running the following command:
+
+   ```shell
+   az group list --query "[?starts_with(name,'rg-eshoponweb')].name" --output tsv
+   ```
+
+   This command will list all resource groups that start with the prefix `rg-eshoponweb`.
+
+3. Delete all resource groups you created throughout the labs of this module by running the following command:
+
+   ```shell
+   az group list --query "[?starts_with(name,'rg-eshoponweb')].[name]" --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
+   ```
+
+   This command will delete all resource groups that start with the prefix `rg-eshoponweb`. The `--no-wait` parameter allows the command to execute asynchronously, so you can run another Azure CLI command immediately afterwards within the same Bash session. However, it will take a few minutes before the resource groups are actually removed.
+
+**Note:** The command executes asynchronously (as determined by the `--no-wait` parameter), so while you will be able to run another Azure CLI command immediately afterwards within the same Bash session, it will take a few minutes before the resource groups are actually removed.
+
+# Conclusion
+
+In this project, I learned how to set up a GitHub repository and integrate it with Azure to automatically build, test, and deploy an ASP.NET Core web application using GitHub Actions.
+
+I started by importing the existing eShopOnWeb repository to my own GitHub account, and then proceeded to set up the necessary Azure resources and GitHub Actions workflow to enable the Continuous Integration and Continuous Deployment (CI/CD) process.
+
+The key steps I took included:
+
+1. **Creating an Azure Service Principal**: I created an Azure Service Principal with the required permissions to manage resources within a specific Resource Group. This Service Principal was then saved as a GitHub secret to be used by the GitHub Actions workflow.
+
+2. **Configuring the GitHub Actions Workflow**: I modified the provided GitHub Actions workflow file to specify the Azure resources to be deployed, such as the Resource Group, App Service Plan, and App Service. I also customized the workflow to trigger on pushes to the main branch and provided the option for manual triggers.
+
+3. **Implementing Manual Approval**: I added a manual approval step to the workflow, utilizing GitHub Environments. This required a designated reviewer to approve the deployment to the "Development" environment before the workflow could proceed to the deployment stage.
+
+4. **Reviewing the Deployed Resources**: I verified the successful deployment by reviewing the created Azure resources in the Azure Portal, including the App Service Plan and App Service, and validating the deployed web application.
+
+5. **Cleaning Up Resources**: Finally, I learned how to remove the Azure resources provisioned during the lab using the Azure Cloud Shell to avoid unnecessary charges.
+
+This project demonstrates the power of integrating GitHub Actions with Azure to streamline the DevOps process for .NET Core web applications. By automating the build, test, and deployment stages, I can ensure consistent and reliable application releases, while also incorporating security measures like manual approvals for critical deployments.
+
+The skills and knowledge I gained from this project can be directly applied to my own software development and deployment workflows, helping me to improve efficiency, reliability, and collaboration within my team.
 
 
 
